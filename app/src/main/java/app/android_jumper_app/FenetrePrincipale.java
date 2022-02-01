@@ -1,4 +1,5 @@
 package app.android_jumper_app;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,12 +41,9 @@ public class FenetrePrincipale extends AppCompatActivity {
         Log.d("LOGAPPJUMPER","onDestroy");
     }
 
-    public void sendMessage(View view) {
-        TextView editText = (TextView) findViewById(R.id.textView);
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        editText.setText("Sa marche bien !");
-        pb.setProgress(pb.getProgress()+10);
-
+    public void click(View view) {
+        Intent intent = new Intent(this, FenetreDeJeu.class);
+        startActivity(intent);
     }
 
 

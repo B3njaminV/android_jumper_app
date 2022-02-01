@@ -11,7 +11,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fenetreprincipale);
+        setContentView(R.layout.fenetredejeu);
     }
 
     @Override
@@ -38,11 +38,4 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LOGAPPJUMPER","onDestroy");
     }
 
-    public void sendMessage(View view) {
-        TextView editText = (TextView) findViewById(R.id.textView);
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        editText.setText("Sa marche bien !");
-        pb.setProgress(pb.getProgress()+10);
-
-    }
 }
