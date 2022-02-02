@@ -5,16 +5,25 @@ import android.util.Log;
 import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 public class FenetrePrincipale extends AppCompatActivity {
 
+    public Joueur joueur;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetreprincipale);
+        joueur = new Joueur();
+        if(savedInstanceState != null){
+            ((EditText)findViewById(R.id.editTextTextPersonName)).setText(savedInstanceState.getString("joueur"));
+            Log.d("LOGAPPJUMPER","JOUEUR BIEN RECUPERE");
+        }
     }
 
     @Override
@@ -42,6 +51,9 @@ public class FenetrePrincipale extends AppCompatActivity {
     }
 
     public void click(View view) {
+        String nom = ((EditText)findViewById(R.id.editTextTextPersonName)).getText().toString();
+        joueur.setPseudo(nom);
+        Log.d("LOGAPPJUMPER","JOUEUR CREE");
         Intent intent = new Intent(this, FenetreDeJeu.class);
         startActivity(intent);
     }
