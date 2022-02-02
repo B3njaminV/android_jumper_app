@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/degrade.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fenetredejeu.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/fenetreprincipale.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/fenetreprincipale.xml" value="0.5" />
       </map>
     </option>
   </component>
@@ -13,5 +14,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.35520833333333335" />
+      </ProjectState>
+    </option>
   </component>
 </project>
