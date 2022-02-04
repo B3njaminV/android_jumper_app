@@ -3,6 +3,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,10 +23,25 @@ public class FenetrePrincipale extends AppCompatActivity {
         setContentView(R.layout.fenetreprincipale);
         joueur = new Joueur();
         if(savedInstanceState != null){
-            ((EditText)findViewById(R.id.editTextTextPersonName)).setText(savedInstanceState.getString("joueur"));
-            Log.d("LOGAPPJUMPER","JOUEUR BIEN RECUPERE");
+                ((EditText)findViewById(R.id.editTextTextPersonName)).setText(savedInstanceState.getString("joueur"));
+                Log.d("LOGAPPJUMPER","JOUEUR BIEN RECUPERE");
         }
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState){
+        Log.d("LOGAPPJUMPER","ONSAVEINSTANCESTATE");
+        outState.putString("joueur", joueur.getPseudo());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle saveInstanceState){
+        Log.d("LOGAPPJUMPER","ONRESTOREINSTANCESTATE");
+        joueur.setPseudo(saveInstanceState.getString("joueur"));
+        super.onRestoreInstanceState(saveInstanceState);
+    }
+
 
     @Override
     protected void onStart(){
