@@ -8,16 +8,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="140dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_width="208dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="108dp"
-        android:text="Partie JEU"
+        android:text="Patientez..."
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        />
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
