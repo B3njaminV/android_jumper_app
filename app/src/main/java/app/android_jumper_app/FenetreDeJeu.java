@@ -25,6 +25,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur"));
+        ((TextView)findViewById(R.id.points)).setText("120 points");
 
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
