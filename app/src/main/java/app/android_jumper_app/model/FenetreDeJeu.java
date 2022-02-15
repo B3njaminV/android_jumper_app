@@ -6,11 +6,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Random;
 
 public class FenetreDeJeu extends AppCompatActivity {
 
@@ -45,23 +46,18 @@ public class FenetreDeJeu extends AppCompatActivity {
             }
         });
         animator.start();
-
-        Button buttonClick = (Button) findViewById(R.id.button2);
-        buttonClick.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP){
-
-                    ImageView jumper = (ImageView) findViewById(R.id.imageView);
-                    Log.d("LAJ","FJ-JE SAUTE");
-
-                    return true;
-                }
-                return false;
-            }
-        });
-
         Log.d("LAJ","FJ-onStart");
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        switch (e.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
+        }
+        Log.d("LAJ","FJ-onTouchEvent");
+        return false;
     }
 
     @Override
