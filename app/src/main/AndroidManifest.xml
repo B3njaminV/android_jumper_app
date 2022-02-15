@@ -10,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_jumper_app">
 
-        <activity android:name=".model.FenetrePrincipale"
-            android:exported="true">
+        <activity
+            android:name=".model.FenetrePrincipale"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".model.FenetreDeJeu">
+        <activity
+            android:name=".model.FenetreDeJeu"
+            android:screenOrientation="portrait">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".model.FenetrePrincipale"/>
         </activity>
 

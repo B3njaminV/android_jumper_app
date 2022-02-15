@@ -9,6 +9,13 @@ class PrimeRun implements Runnable {
     }
 
     public void run() {
-        Log.d("LAJ","PT-THREAD");
+        while(true){
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.d("LAJ","PT-THREAD");
+        }
     }
 }

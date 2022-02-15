@@ -13,6 +13,9 @@ import app.android_jumper_app.R;
 
 public class FenetreDeJeu extends AppCompatActivity {
 
+    public PrimeRun p;
+    private boolean EntrainDeSauter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +29,13 @@ public class FenetreDeJeu extends AppCompatActivity {
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur"));
         ((TextView)findViewById(R.id.points)).setText("120 points");
 
-        PrimeRun p = new PrimeRun(143);
+        animationFond();
+        p = new PrimeRun(143);
         new Thread(p).start();
+        Log.d("LAJ","FJ-onStart");
+    }
 
+    public void animationFond(){
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
 
@@ -47,16 +54,18 @@ public class FenetreDeJeu extends AppCompatActivity {
             }
         });
         animator.start();
-
-        Log.d("LAJ","FJ-onStart");
     }
 
-
+    public void setEntrainDeSauter(boolean entrainDeSauter) {
+        this.EntrainDeSauter = entrainDeSauter;
+    }
+    
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
+
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;
