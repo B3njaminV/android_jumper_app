@@ -1,5 +1,7 @@
 package app.android_jumper_app.model;
 
+import android.util.Log;
+
 class PrimeRun implements Runnable {
     long minPrime;
     PrimeRun(long minPrime) {
@@ -7,6 +9,6 @@ class PrimeRun implements Runnable {
     }
 
     public void run() {
-
+        Log.d("LAJ","PT-THREAD");
     }
 }

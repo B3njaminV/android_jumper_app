@@ -3,15 +3,11 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Random;
 
 import app.android_jumper_app.R;
 
@@ -29,6 +25,9 @@ public class FenetreDeJeu extends AppCompatActivity {
         super.onStart();
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur"));
         ((TextView)findViewById(R.id.points)).setText("120 points");
+
+        PrimeRun p = new PrimeRun(143);
+        new Thread(p).start();
 
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
@@ -48,6 +47,7 @@ public class FenetreDeJeu extends AppCompatActivity {
             }
         });
         animator.start();
+
         Log.d("LAJ","FJ-onStart");
     }
 

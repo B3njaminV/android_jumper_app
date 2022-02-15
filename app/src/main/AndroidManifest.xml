@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_jumper_app">
 
-        <activity android:name=".FenetrePrincipale"
+        <activity android:name=".model.FenetrePrincipale"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".FenetreDeJeu">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FenetrePrincipale"/>
+        <activity android:name=".model.FenetreDeJeu">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".model.FenetrePrincipale"/>
         </activity>
 
     </application>
