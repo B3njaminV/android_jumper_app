@@ -1,4 +1,4 @@
-package app.android_jumper_app;
+package app.android_jumper_app.model;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +8,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
+
+import app.android_jumper_app.model.Joueur;
+import app.android_jumper_app.R;
+
 public class FenetrePrincipale extends AppCompatActivity {
 
     public Joueur joueur;

@@ -1,4 +1,4 @@
-package app.android_jumper_app;
+package app.android_jumper_app.model;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
+
+import app.android_jumper_app.R;
 
 public class FenetreDeJeu extends AppCompatActivity {
 
