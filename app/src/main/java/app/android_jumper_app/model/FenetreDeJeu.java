@@ -30,7 +30,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         ((TextView)findViewById(R.id.points)).setText("120 points");
 
         animationFond();
-        p = new PrimeRun(143);
+        //p = new PrimeRun(143);
         new Thread(p).start();
         Log.d("LAJ","FJ-onStart");
     }
@@ -65,7 +65,6 @@ public class FenetreDeJeu extends AppCompatActivity {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
-
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;

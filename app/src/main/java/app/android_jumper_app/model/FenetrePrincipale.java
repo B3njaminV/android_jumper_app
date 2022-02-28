@@ -2,27 +2,47 @@ package app.android_jumper_app.model;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileNotFoundException;
+
+import app.android_jumper_app.data.FileLoader;
+import app.android_jumper_app.data.FileSaver;
+import app.android_jumper_app.data.Loader;
+import app.android_jumper_app.data.Sauveur;
 import app.android_jumper_app.model.Joueur;
 import app.android_jumper_app.R;
 
 public class FenetrePrincipale extends AppCompatActivity {
 
     public Joueur joueur;
+    private Sauveur leSauveur = new FileSaver();
+    private Loader leLoader;
+    public static final String LA_PERSISTANCE = "joueur";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetreprincipale);
+        /* Persistence légère
         if(savedInstanceState != null){
             ((EditText)findViewById(R.id.editTextTextPersonName)).setText(savedInstanceState.getString("joueur"));
+        }*/
 
+        leLoader = new FileLoader();
+        try {
+            joueur = (Joueur) leLoader.load(openFileInput(LA_PERSISTANCE));
+            Log.d("LAJ", "FP-joueur recup");
+        } catch (FileNotFoundException e) {
+            Log.e(getPackageName(), "AUCUNE RECUPERATION");
         }
         Log.d("LAJ","FP-onCreate");
     }
@@ -44,7 +64,11 @@ public class FenetrePrincipale extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        joueur = new Joueur();
+        if (joueur != null){
+            ((EditText)findViewById(R.id.editTextTextPersonName)).setText(joueur.getPseudo());
+        }else{
+            joueur = new Joueur();
+        }
         Log.d("LAJ","FP-onStart");
     }
 
@@ -61,6 +85,18 @@ public class FenetrePrincipale extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            leSauveur.save(openFileOutput(LA_PERSISTANCE, MODE_PRIVATE), joueur);
+            Log.d("LAJ", "FP-joueur sauv");
+        } catch (FileNotFoundException e) {
+            Log.e(getPackageName(), "SAUVERGARDE IMPOSSIBLE");
+        }
+        Log.d("LAJ", "FP-onStop");
+    }
+
+    @Override
     protected void onDestroy(){
         super.onDestroy();
         Log.d("LAJ","FP-onDestroy");
@@ -69,7 +105,11 @@ public class FenetrePrincipale extends AppCompatActivity {
     public void click(View view) {
         String nom = ((EditText)findViewById(R.id.editTextTextPersonName)).getText().toString();
         if (nom.isEmpty()){
-            Snackbar mySnackbar = Snackbar.make(view, "Pseudo Invalide !", 2000);
+            Snackbar mySnackbar = Snackbar.make(view, "Merci d'entrer un pseudo valide !", Snackbar.LENGTH_LONG);
+            View v = mySnackbar.getView();
+            FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+            params.gravity = Gravity.TOP;
+            v.setLayoutParams(params);
             mySnackbar.show();
         }else{
             joueur.setPseudo(nom);
@@ -79,6 +119,4 @@ public class FenetrePrincipale extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-
 }
