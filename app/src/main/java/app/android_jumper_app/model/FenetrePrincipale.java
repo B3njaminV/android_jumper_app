@@ -32,11 +32,6 @@ public class FenetrePrincipale extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetreprincipale);
-        /* Persistence légère
-        if(savedInstanceState != null){
-            ((EditText)findViewById(R.id.editTextTextPersonName)).setText(savedInstanceState.getString("joueur"));
-        }*/
-
         leLoader = new FileLoader();
         try {
             joueur = (Joueur) leLoader.load(openFileInput(LA_PERSISTANCE));
@@ -113,9 +108,11 @@ public class FenetrePrincipale extends AppCompatActivity {
             mySnackbar.show();
         }else{
             joueur.setPseudo(nom);
+            joueur.setHighScore(200);
             Log.d("LAJ","FP-JOUEUR CREE");
             Intent intent = new Intent(this, FenetreDeJeu.class);
-            intent.putExtra("joueur", joueur.getPseudo());
+            intent.putExtra("joueur_pseudo", joueur.getPseudo());
+            intent.putExtra("joueur_score", String.valueOf(joueur.getHighScore()));
             startActivity(intent);
         }
     }
