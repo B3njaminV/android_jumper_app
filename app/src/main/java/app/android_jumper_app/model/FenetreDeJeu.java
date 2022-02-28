@@ -15,6 +15,7 @@ public class FenetreDeJeu extends AppCompatActivity {
 
     public PrimeRun p;
     private boolean EntrainDeSauter;
+    public Tuyau t;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class FenetreDeJeu extends AppCompatActivity {
         ((TextView)findViewById(R.id.points)).setText("120 points");
 
         animationFond();
-        //p = new PrimeRun(143);
+        t = new Tuyau(800, 235, 43, 60);
+        p = new PrimeRun(143, t);
         new Thread(p).start();
         Log.d("LAJ","FJ-onStart");
     }
