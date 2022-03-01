@@ -14,8 +14,8 @@ import app.android_jumper_app.R;
 public class FenetreDeJeu extends AppCompatActivity {
 
     public PrimeRun p;
-    private boolean enTrainDeSauter;
     public Tuyau t;
+    public Jumper j;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,11 +28,12 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
-        ((TextView)findViewById(R.id.points)).setText("120 points");
+        ((TextView)findViewById(R.id.points)).setText("200 points");
 
         animationFond();
-        t = new Tuyau(800, 235, 43, 60);
-        p = new PrimeRun(143, t);
+        t = new Tuyau(0);
+        j = new Jumper();
+        p = new PrimeRun(143);
         new Thread(p).start();
         Log.d("LAJ","FJ-onStart");
     }
@@ -40,6 +41,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public void animationFond(){
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
+        final ImageView tuyau = (ImageView) findViewById(R.id.tuyau);
 
         final ValueAnimator animator = ValueAnimator.ofFloat(1.0f, 0.0f);
         animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -53,6 +55,7 @@ public class FenetreDeJeu extends AppCompatActivity {
                 final float translationX = width * progress;
                 backgroundOne.setTranslationX(translationX);
                 backgroundTwo.setTranslationX(translationX - width);
+                tuyau.setTranslationX(translationX - width);
             }
         });
         animator.start();
@@ -62,13 +65,8 @@ public class FenetreDeJeu extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if(enTrainDeSauter == false){
-                    enTrainDeSauter=true;
-                    ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
-                }else{
-                    ((ImageView)findViewById(R.id.imageView)).setTranslationY(0);
-                    enTrainDeSauter=false;
-                }
+                j.calculCoordonnee();
+                ((ImageView)findViewById(R.id.imageView)).setTranslationY(j.getY());
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;

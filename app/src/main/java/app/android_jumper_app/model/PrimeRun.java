@@ -6,14 +6,13 @@ class PrimeRun implements Runnable {
     long minPrime;
     private boolean isDead=false;
 
-    PrimeRun(long minPrime, Tuyau t) {
+    PrimeRun(long minPrime) {
         this.minPrime = minPrime;
     }
 
     public void run() {
-        while(!false){
+        while(!isDead){
             try {
-                //t.avance();
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();

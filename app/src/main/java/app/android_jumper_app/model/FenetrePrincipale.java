@@ -9,16 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import java.io.FileNotFoundException;
-
 import app.android_jumper_app.data.FileLoader;
 import app.android_jumper_app.data.FileSaver;
 import app.android_jumper_app.data.Loader;
 import app.android_jumper_app.data.Sauveur;
-import app.android_jumper_app.model.Joueur;
 import app.android_jumper_app.R;
 
 public class FenetrePrincipale extends AppCompatActivity {
