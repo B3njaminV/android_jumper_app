@@ -4,13 +4,16 @@ import android.util.Log;
 
 class PrimeRun implements Runnable {
     long minPrime;
-    PrimeRun(long minPrime) {
+    private boolean isDead=false;
+
+    PrimeRun(long minPrime, Tuyau t) {
         this.minPrime = minPrime;
     }
 
     public void run() {
-        while(true){
+        while(!false){
             try {
+                //t.avance();
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();

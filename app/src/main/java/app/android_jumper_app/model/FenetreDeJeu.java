@@ -14,7 +14,8 @@ import app.android_jumper_app.R;
 public class FenetreDeJeu extends AppCompatActivity {
 
     public PrimeRun p;
-    private boolean enTrainDeSauter=false;
+    private boolean EntrainDeSauter;
+    public Tuyau t;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,10 +27,12 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
-        ((TextView)findViewById(R.id.points)).setText(getIntent().getStringExtra("joueur_score"));
+        ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur"));
+        ((TextView)findViewById(R.id.points)).setText("120 points");
+
         animationFond();
-        //p = new PrimeRun(143);
+        t = new Tuyau(800, 235, 43, 60);
+        p = new PrimeRun(143, t);
         new Thread(p).start();
         Log.d("LAJ","FJ-onStart");
     }
@@ -55,17 +58,15 @@ public class FenetreDeJeu extends AppCompatActivity {
         animator.start();
     }
 
+    public void setEntrainDeSauter(boolean entrainDeSauter) {
+        this.EntrainDeSauter = entrainDeSauter;
+    }
+    
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if(enTrainDeSauter == false){
-                    enTrainDeSauter=true;
-                    ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
-                }else{
-                    ((ImageView)findViewById(R.id.imageView)).setTranslationY(0);
-                    enTrainDeSauter=false;
-                }
+            case MotionEvent.ACTION_MOVE:
+                ((ImageView)findViewById(R.id.imageView)).setTranslationY(-500);
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;
