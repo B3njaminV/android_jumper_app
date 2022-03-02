@@ -29,9 +29,11 @@ public class FenetreDeJeu extends AppCompatActivity {
         super.onStart();
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
         ((TextView)findViewById(R.id.points)).setText("200 points");
+        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
+        final float largeurEcran = backgroundOne.getWidth();
 
         animationFond();
-        t = new Tuyau(0);
+        t = new Tuyau(0, largeurEcran);
         j = new Jumper();
         p = new PrimeRun(143);
         new Thread(p).start();

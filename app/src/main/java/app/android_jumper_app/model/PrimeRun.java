@@ -10,6 +10,7 @@ class PrimeRun implements Runnable {
         this.minPrime = minPrime;
     }
 
+    @Override
     public void run() {
         while(!isDead){
             try {
