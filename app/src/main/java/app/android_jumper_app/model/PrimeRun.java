@@ -19,7 +19,7 @@ class PrimeRun implements Runnable {
             try {
                 fdj.avanceTuyau();
                 if(fdj.t.getX() == -1200){
-                    fdj.t.remisAZero(0);
+                    fdj.t.remisAZero(200);
                 }
                 Log.d("LAJ","JE PASSE LA");
 
