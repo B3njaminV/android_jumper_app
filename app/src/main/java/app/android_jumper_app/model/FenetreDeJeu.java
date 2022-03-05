@@ -1,5 +1,6 @@
 package app.android_jumper_app.model;
 import android.animation.ValueAnimator;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,6 +17,9 @@ public class FenetreDeJeu extends AppCompatActivity {
     public PrimeRun p;
     public Tuyau t;
     public Jumper j;
+    public RectF spriteRect = new RectF();
+    public RectF bottomPipeRect = new RectF();
+    public ImageView tuyau;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,12 +35,15 @@ public class FenetreDeJeu extends AppCompatActivity {
         ((TextView)findViewById(R.id.points)).setText("200 points");
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final float largeurEcran = backgroundOne.getWidth();
+        final float hauteur = backgroundOne.getHeight();
+        tuyau = (ImageView) findViewById(R.id.tuyau);
 
         animationFond();
-        t = new Tuyau(0, largeurEcran);
+        t = new Tuyau(0, largeurEcran, hauteur);
         j = new Jumper();
-        p = new PrimeRun(143);
+        p = new PrimeRun(143, this);
         new Thread(p).start();
+        tuyau.setTranslationX(t.getX());
         Log.d("LAJ","FJ-onStart");
     }
 
@@ -57,7 +64,6 @@ public class FenetreDeJeu extends AppCompatActivity {
                 final float translationX = width * progress;
                 backgroundOne.setTranslationX(translationX);
                 backgroundTwo.setTranslationX(translationX - width);
-                tuyau.setTranslationX(translationX - width);
             }
         });
         animator.start();
@@ -90,6 +96,11 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         Log.d("LAJ","FJ-onDestroy");
+    }
+
+    public void avanceTuyau(){
+        t.avance();
+        tuyau.setTranslationX(t.getX());
     }
 
 }
