@@ -2,7 +2,6 @@ package app.android_jumper_app.model;
 
 public class Tuyau {
 
-
     private int dist;
     private int x;
     private double dx;
@@ -13,7 +12,6 @@ public class Tuyau {
         dist = (int) (screenHeight/1.1);
         bottomY = (int) Math.floor(Math.random() * (screenHeight/2) + .3 * screenHeight);
         topY = bottomY - dist;
-
         this.x = x;
         this.dx = avance;
         height = (int)screenHeight;

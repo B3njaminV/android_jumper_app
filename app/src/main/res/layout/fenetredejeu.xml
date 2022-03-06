@@ -33,7 +33,19 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/chateau"
+        android:layout_width="217dp"
+        android:layout_height="191dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/background_one"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="@+id/background_one"
+        app:layout_constraintTop_toTopOf="@+id/background_one"
+        app:layout_constraintVertical_bias="0.829"
+        app:srcCompat="@mipmap/chateau" />
+
+    <ImageView
+        android:id="@+id/jumper"
         android:layout_width="75dp"
         android:layout_height="98dp"
         app:layout_constraintBottom_toBottomOf="parent"
