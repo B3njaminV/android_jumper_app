@@ -1,10 +1,8 @@
 package app.android_jumper_app.model;
-import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -19,12 +17,24 @@ public class FenetreDeJeu extends AppCompatActivity {
     public Jumper j;
     public RectF spriteRect = new RectF();
     public RectF bottomPipeRect = new RectF();
-    public ImageView tuyau;
+    private ImageView tuyau;
+    private ImageView backgroundOne;
+    private ImageView backgroundTwo;
+    private float largeurEcran;
+    private float hauteurEcran;
+    private float avance = 10;
+    private final int avanceB = 800;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetredejeu);
+        backgroundOne = (ImageView) findViewById(R.id.background_one);
+        backgroundTwo = (ImageView) findViewById(R.id.background_two);
+        largeurEcran = backgroundOne.getWidth();
+        hauteurEcran = backgroundOne.getHeight();
+        backgroundOne.setTranslationX(0);
+        backgroundTwo.setTranslationX(avanceB);
         Log.d("LAJ","FJ-onCreate");
     }
 
@@ -33,13 +43,11 @@ public class FenetreDeJeu extends AppCompatActivity {
         super.onStart();
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
         ((TextView)findViewById(R.id.points)).setText("200 points");
-        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
-        final float largeurEcran = backgroundOne.getWidth();
-        final float hauteur = backgroundOne.getHeight();
+
         tuyau = (ImageView) findViewById(R.id.tuyau);
 
-        animationFond();
-        t = new Tuyau(0, largeurEcran, hauteur);
+        //animationFond();
+        t = new Tuyau(0, largeurEcran, hauteurEcran, avance);
         j = new Jumper();
         p = new PrimeRun(143, this);
         new Thread(p).start();
@@ -47,28 +55,6 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LAJ","FJ-onStart");
     }
 
-    public void animationFond(){
-        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
-        final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
-        final ImageView tuyau = (ImageView) findViewById(R.id.tuyau);
-
-        final ValueAnimator animator = ValueAnimator.ofFloat(1.0f, 0.0f);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.setDuration(1000L);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = backgroundOne.getWidth();
-                final float translationX = width * progress;
-                backgroundOne.setTranslationX(translationX);
-                backgroundTwo.setTranslationX(translationX - width);
-            }
-        });
-        animator.start();
-    }
-    
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
@@ -98,9 +84,25 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LAJ","FJ-onDestroy");
     }
 
-    public void avanceTuyau(){
+    public void updateTuyau(){
+        if(t.getX() == -1200){
+            t.remisAZero(200);
+        }
         t.avance();
         tuyau.setTranslationX(t.getX());
+    }
+
+    public void updateBackground() {
+        if (backgroundOne.getX() == -avanceB)
+        {
+            backgroundOne.setX(avanceB);
+        }
+        backgroundOne.setX(backgroundOne.getX()-avance);
+        if (backgroundTwo.getX() == -avanceB)
+        {
+            backgroundTwo.setX(avanceB);
+        }
+        backgroundTwo.setX(backgroundTwo.getX()-avance);
     }
 
 }

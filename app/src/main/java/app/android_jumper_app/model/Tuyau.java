@@ -9,13 +9,13 @@ public class Tuyau {
     private int topY, bottomY;
     private int height, width;
 
-    public Tuyau(int x, float screenWidth, float screenHeight){
+    public Tuyau(int x, float screenWidth, float screenHeight, float avance){
         dist = (int) (screenHeight/1.1);
         bottomY = (int) Math.floor(Math.random() * (screenHeight/2) + .3 * screenHeight);
         topY = bottomY - dist;
 
         this.x = x;
-        this.dx = 10;
+        this.dx = avance;
         height = (int)screenHeight;
         width = (int)screenWidth;
     }

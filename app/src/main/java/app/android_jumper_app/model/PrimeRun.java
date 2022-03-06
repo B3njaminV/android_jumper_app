@@ -17,10 +17,8 @@ class PrimeRun implements Runnable {
     public void run() {
         while(!isDead){
             try {
-                fdj.avanceTuyau();
-                if(fdj.t.getX() == -1200){
-                    fdj.t.remisAZero(200);
-                }
+                fdj.updateTuyau();
+                fdj.updateBackground();
                 Log.d("LAJ","JE PASSE LA");
 
                 fdj.bottomPipeRect = new RectF(fdj.t.getX(), fdj.t.getBottomY(), fdj.t.getX() + 10, 50);
