@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Android_jumper_app">
 
         <activity
-            android:name=".model.FenetrePrincipale"
+            android:name=".model.fenetre.FenetrePrincipale"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,9 +20,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".model.FenetreDeJeu"
+            android:name=".model.fenetre.FenetreDeJeu"
             android:screenOrientation="portrait">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".model.FenetrePrincipale"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".model.fenetre.FenetrePrincipale"/>
         </activity>
 
     </application>

@@ -1,4 +1,4 @@
-package app.android_jumper_app.model;
+package app.android_jumper_app.model.fenetre;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import app.android_jumper_app.R;
+import app.android_jumper_app.model.classe.Jumper;
+import app.android_jumper_app.model.boucle.PrimeRun;
+import app.android_jumper_app.model.classe.Score;
+import app.android_jumper_app.model.classe.Tuyau;
 
 public class FenetreDeJeu extends AppCompatActivity {
 
@@ -23,12 +27,14 @@ public class FenetreDeJeu extends AppCompatActivity {
     private ImageView backgroundOne;
     private ImageView backgroundTwo;
     private ImageView chateau;
+    private TextView score;
     private float largeurEcran;
     private float hauteurEcran;
     private float largeurJumper;
     private float hauteurJumper;
     private float avance = 10;
     private final int avanceB = 800;
+    public int vitesseThread = 8;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         chateau = (ImageView) findViewById(R.id.chateau);
         tuyau = (ImageView) findViewById(R.id.tuyau);
         jumper = (ImageView) findViewById(R.id.jumper);
+        score = ((TextView)findViewById(R.id.points));
         largeurEcran = backgroundOne.getWidth();
         hauteurEcran = backgroundOne.getHeight();
         largeurJumper = jumper.getWidth();
@@ -52,19 +59,19 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        t = new Tuyau(0, largeurEcran, hauteurEcran, avance);
+        t = new Tuyau(800, largeurEcran, hauteurEcran, avance);
         j = new Jumper(largeurJumper, hauteurJumper);
         s = new Score();
 
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
         String str = String.valueOf(s.getNbPoint());
-        ((TextView)findViewById(R.id.points)).setText(str + " points");
+        score.setText(str + " points !");
 
         p = new PrimeRun(143, this);
         new Thread(p).start();
 
-        tuyau.setTranslationX(t.getX());
-        jumper.setTranslationX(j.getX());
+        tuyau.setTranslationX(t.getX());        //premier positionnement du tuyau donc a ce niveau x vaut 0
+        jumper.setTranslationX(j.getX());       //fixe, jumper ne bougera jamais
         Log.d("LAJ","FJ-onStart");
     }
 
@@ -82,7 +89,8 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        Log.d("LAJ","FJ-onResume");
+        s = new Score();
+        Log.d("LAJJ","FJ-onResume");
     }
 
     @Override
@@ -125,10 +133,13 @@ public class FenetreDeJeu extends AppCompatActivity {
     public void addPoint(){
         s.addPoint();
     }
-
     public void updatePoint(){
-        String str2 = String.valueOf(s.getNbPoint());
-        ((TextView)findViewById(R.id.points)).setText(str2 + " points");
+        String str = String.valueOf(s.getNbPoint());
+        score.setText(str + " points !");
+    }
+
+    public void updateAvance(){
+
     }
 
 }

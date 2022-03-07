@@ -1,14 +1,16 @@
-package app.android_jumper_app.model;
+package app.android_jumper_app.model.boucle;
 
 import android.graphics.RectF;
 import android.util.Log;
 
-class PrimeRun implements Runnable {
+import app.android_jumper_app.model.fenetre.FenetreDeJeu;
+
+public class PrimeRun implements Runnable {
     long minPrime;
     private boolean isDead=false;
     private FenetreDeJeu fdj;
 
-    PrimeRun(long minPrime, FenetreDeJeu fdj) {
+    public PrimeRun(long minPrime, FenetreDeJeu fdj) {
         this.minPrime = minPrime;
         this.fdj=fdj;
     }
@@ -17,19 +19,19 @@ class PrimeRun implements Runnable {
     public void run() {
         while(!isDead){
             try {
+                fdj.updateAvance();
                 fdj.addPoint();
                 fdj.updateTuyau();
-                fdj.updateBackground();
                 fdj.updateBackground();
                 fdj.updateChateau();
                 fdj.updatePoint();
                 if (fdj.j.contactTuyau(fdj.t)) {
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
-                    //Thread.currentThread().stop();
+                    isDead=true;
                 }
 
                 fdj.bottomPipeRect = new RectF(fdj.t.getX(), fdj.t.getBottomY(), fdj.t.getX() + 10, 50);
-                Thread.sleep(10);
+                Thread.sleep(fdj.vitesseThread);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

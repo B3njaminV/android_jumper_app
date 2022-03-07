@@ -1,4 +1,4 @@
-package app.android_jumper_app.model;
+package app.android_jumper_app.model.classe;
 
 import java.io.Serializable;
 

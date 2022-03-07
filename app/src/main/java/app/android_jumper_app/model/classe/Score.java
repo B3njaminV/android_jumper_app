@@ -1,4 +1,4 @@
-package app.android_jumper_app.model;
+package app.android_jumper_app.model.classe;
 
 import java.io.Serializable;
 
@@ -9,9 +9,7 @@ public class Score implements Serializable {
     /**
      * Un score est définit seulement par un nombre de points
      */
-    public Score(){
-        this.nbPoints=1;
-    }
+    public Score(){}
 
     /**
      * On retourne le nombre de points

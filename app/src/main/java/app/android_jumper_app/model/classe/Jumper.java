@@ -1,6 +1,4 @@
-package app.android_jumper_app.model;
-
-import android.util.Log;
+package app.android_jumper_app.model.classe;
 
 public class Jumper {
 

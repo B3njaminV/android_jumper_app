@@ -1,4 +1,4 @@
-package app.android_jumper_app.model;
+package app.android_jumper_app.model.fenetre;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +16,7 @@ import app.android_jumper_app.data.FileSaver;
 import app.android_jumper_app.data.Loader;
 import app.android_jumper_app.data.Sauveur;
 import app.android_jumper_app.R;
+import app.android_jumper_app.model.classe.Joueur;
 
 public class FenetrePrincipale extends AppCompatActivity {
 
