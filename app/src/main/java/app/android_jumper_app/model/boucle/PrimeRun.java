@@ -25,12 +25,16 @@ public class PrimeRun implements Runnable {
                 fdj.updateBackground();
                 fdj.updateChateau();
                 fdj.updatePoint();
+                /*
                 if (fdj.j.contactTuyau(fdj.t)) {
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
                     isDead=true;
                 }
-
-                fdj.bottomPipeRect = new RectF(fdj.t.getX(), fdj.t.getBottomY(), fdj.t.getX() + 10, 50);
+                */
+                if(fdj.verif()){
+                    Log.d("LAJ","J-CONTACT !!!!!!!!");
+                    isDead=true;
+                }
                 Thread.sleep(fdj.vitesseThread);
             } catch (InterruptedException e) {
                 e.printStackTrace();

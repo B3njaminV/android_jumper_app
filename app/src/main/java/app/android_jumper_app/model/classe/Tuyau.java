@@ -6,7 +6,6 @@ public class Tuyau {
     private int x;
     private double dx;
     private int topY, bottomY;
-    private int height, width;
 
     public Tuyau(int x, float screenWidth, float screenHeight, float avance){
         dist = (int) (screenHeight/1.1);
@@ -14,8 +13,6 @@ public class Tuyau {
         topY = bottomY - dist;
         this.x = x;
         this.dx = avance;
-        height = (int)screenHeight;
-        width = (int)screenWidth;
     }
 
     public void remisAZero(int valeur){

@@ -1,4 +1,5 @@
 package app.android_jumper_app.model.fenetre;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
@@ -140,6 +141,22 @@ public class FenetreDeJeu extends AppCompatActivity {
 
     public void updateAvance(){
 
+    }
+
+    public boolean verif() {
+        int[] v1_coords = new int[2];
+        tuyau.getLocationOnScreen(v1_coords);
+        int v1_w = tuyau.getWidth();
+        int v1_h = tuyau.getHeight();
+        Rect v1_rect = new Rect(v1_coords[0], v1_coords[1], v1_coords[0] + v1_w, v1_coords[1] + v1_h);
+
+        int[] v2_coords = new int[2];
+        jumper.getLocationOnScreen(v1_coords);
+        int v2_w = jumper.getWidth();
+        int v2_h = jumper.getHeight();
+        Rect v2_rect = new Rect(v2_coords[0], v2_coords[1], v2_coords[0] + v2_w, v2_coords[1] + v2_h);
+
+        return v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect);
     }
 
 }

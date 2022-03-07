@@ -53,10 +53,10 @@ public class Jumper {
     }
 
     public boolean contactTuyau(Tuyau t){
-        if(this.getX() + this.getLargeur() < t.getX() || this.getX() + this.getLargeur() > t.getX() + 21.50)
+        if(this.getX() == t.getX())
         {
-            return false;
+            return true;
         }
-        else return true;
+        else return false;
     }
 }
