@@ -25,12 +25,6 @@ public class PrimeRun implements Runnable {
                 fdj.updateBackground();
                 fdj.updateChateau();
                 fdj.updatePoint();
-                /*
-                if (fdj.j.contactTuyau(fdj.t)) {
-                    Log.d("LAJ","J-CONTACT !!!!!!!!");
-                    isDead=true;
-                }
-                */
                 if(fdj.verif()){
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
                     isDead=true;

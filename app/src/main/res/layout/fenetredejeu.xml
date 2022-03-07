@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
+        android:layout_width="202dp"
+        android:layout_height="72dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
@@ -80,6 +80,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857"
         app:srcCompat="@mipmap/tuyau_rouge" />
+
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="240dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="164dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Perdu !"
+        android:textSize="60sp"
+        android:typeface="monospace"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

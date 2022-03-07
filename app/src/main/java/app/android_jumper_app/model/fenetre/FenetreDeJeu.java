@@ -1,5 +1,4 @@
 package app.android_jumper_app.model.fenetre;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,13 +20,14 @@ public class FenetreDeJeu extends AppCompatActivity {
     public Tuyau t;
     public Jumper j;
     private Score s;
-    public RectF spriteRect = new RectF();
-    public RectF bottomPipeRect = new RectF();
+    public RectF spriteRect;
+    public RectF bottomPipeRect;
     private ImageView tuyau;
     private ImageView jumper;
     private ImageView backgroundOne;
     private ImageView backgroundTwo;
     private ImageView chateau;
+    private TextView end;
     private TextView score;
     private float largeurEcran;
     private float hauteurEcran;
@@ -46,7 +46,8 @@ public class FenetreDeJeu extends AppCompatActivity {
         chateau = (ImageView) findViewById(R.id.chateau);
         tuyau = (ImageView) findViewById(R.id.tuyau);
         jumper = (ImageView) findViewById(R.id.jumper);
-        score = ((TextView)findViewById(R.id.points));
+        score = (TextView)findViewById(R.id.points);
+        end = (TextView) findViewById(R.id.end);
         largeurEcran = backgroundOne.getWidth();
         hauteurEcran = backgroundOne.getHeight();
         largeurJumper = jumper.getWidth();
@@ -134,6 +135,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public void addPoint(){
         s.addPoint();
     }
+
     public void updatePoint(){
         String str = String.valueOf(s.getNbPoint());
         score.setText(str + " points !");
@@ -144,19 +146,9 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public boolean verif() {
-        int[] v1_coords = new int[2];
-        tuyau.getLocationOnScreen(v1_coords);
-        int v1_w = tuyau.getWidth();
-        int v1_h = tuyau.getHeight();
-        Rect v1_rect = new Rect(v1_coords[0], v1_coords[1], v1_coords[0] + v1_w, v1_coords[1] + v1_h);
-
-        int[] v2_coords = new int[2];
-        jumper.getLocationOnScreen(v1_coords);
-        int v2_w = jumper.getWidth();
-        int v2_h = jumper.getHeight();
-        Rect v2_rect = new Rect(v2_coords[0], v2_coords[1], v2_coords[0] + v2_w, v2_coords[1] + v2_h);
-
-        return v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect);
+        spriteRect = new RectF(j.getX(), j.getY(), j.getX() + jumper.getWidth(), j.getY() + jumper.getHeight());
+        bottomPipeRect = new RectF(t.getX(), t.getBottomY(), t.getX() + tuyau.getWidth(), t.getBottomY() + tuyau.getHeight());
+        return bottomPipeRect.intersect(spriteRect);
     }
 
 }
