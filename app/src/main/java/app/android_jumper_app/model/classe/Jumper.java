@@ -4,17 +4,9 @@ public class Jumper {
 
     private int y;
     private int x;
-    private int largeur;
-    private int hauteur;
-    private boolean EntrainDeSauter;
-    private boolean hauteurMax = false;
-    private boolean hauteurMin = false;
 
-    public Jumper(float larg, float hat){
+    public Jumper(){
         this.x=0;
-        this.largeur=(int)larg;
-        this.hauteur=(int)hat;
-        this.EntrainDeSauter =false;
     }
     public boolean estEnTrainDeSauter=false;
 
@@ -38,38 +30,6 @@ public class Jumper {
         this.y = -500;
     }
 
-    public int getLargeur() {
-        return largeur;
-    }
-
-    public int getHauteur() {
-        return hauteur;
-    }
-
-    public boolean isHauteurMax() {
-        return hauteurMax;
-    }
-
-    public void setHauteurMax(boolean hauteurMax) {
-        this.hauteurMax = hauteurMax;
-    }
-
-    public boolean isHauteurMin() {
-        return hauteurMin;
-    }
-
-    public void setHauteurMin(boolean hauteurMin) {
-        this.hauteurMin = hauteurMin;
-    }
-
-    public void setEntrainDeSauter(boolean entrainDeSauter) {
-        this.EntrainDeSauter = entrainDeSauter;
-    }
-
-    public boolean isEntrainDeSauter() {
-        return EntrainDeSauter;
-    }
-
 
     public void calculCoordonnee(){
         if(!estEnTrainDeSauter) {
@@ -79,13 +39,5 @@ public class Jumper {
             setZeroY();
             estEnTrainDeSauter=false;
         }
-    }
-
-    public boolean contactTuyau(Tuyau t){
-        if(this.getX() == t.getX())
-        {
-            return true;
-        }
-        else return false;
     }
 }

@@ -1,8 +1,8 @@
 package app.android_jumper_app.model.fenetre;
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -20,20 +20,20 @@ public class FenetreDeJeu extends AppCompatActivity {
     public Tuyau t;
     public Jumper j;
     private Score s;
-    public RectF spriteRect;
-    public RectF bottomPipeRect;
-    private ImageView tuyau;
-    private ImageView jumper;
+    public ImageView tuyau;
+    public ImageView jumper;
     private ImageView backgroundOne;
     private ImageView backgroundTwo;
     private ImageView chateau;
     private TextView end;
+    private TextView endScore;
     private TextView score;
+    private Button endButton;
     private float largeurEcran;
     private float hauteurEcran;
     private float largeurJumper;
     private float hauteurJumper;
-    private float avance = 10;
+    private final float avance = 10;
     private final int avanceB = 800;
     public int vitesseThread = 8;
 
@@ -48,12 +48,15 @@ public class FenetreDeJeu extends AppCompatActivity {
         jumper = (ImageView) findViewById(R.id.jumper);
         score = (TextView)findViewById(R.id.points);
         end = (TextView) findViewById(R.id.end);
+        endScore = (TextView) findViewById(R.id.endScore);
+        endButton = (Button) findViewById(R.id.endButton);
         largeurEcran = backgroundOne.getWidth();
         hauteurEcran = backgroundOne.getHeight();
         largeurJumper = jumper.getWidth();
         hauteurJumper = jumper.getHeight();
         backgroundOne.setTranslationX(0);
         backgroundTwo.setTranslationX(avanceB);
+        endButton.setVisibility(endButton.GONE);
         Log.d("LAJ","FJ-onCreate");
     }
 
@@ -61,8 +64,8 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        t = new Tuyau(800, largeurEcran, hauteurEcran, avance);
-        j = new Jumper(largeurJumper, hauteurJumper);
+        t = new Tuyau(800, avance);
+        j = new Jumper();
         s = new Score();
 
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
@@ -72,7 +75,8 @@ public class FenetreDeJeu extends AppCompatActivity {
         p = new PrimeRun(143, this);
         new Thread(p).start();
 
-        tuyau.setTranslationX(t.getX());        //premier positionnement du tuyau donc a ce niveau x vaut 0
+        tuyau.setTranslationX(t.getX());
+        tuyau.setTranslationY(t.getY());//premier positionnement du tuyau donc a ce niveau x vaut 0
         jumper.setTranslationX(j.getX());       //fixe, jumper ne bougera jamais
         Log.d("LAJ","FJ-onStart");
     }
@@ -92,7 +96,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         s = new Score();
-        Log.d("LAJJ","FJ-onResume");
+        Log.d("LAJ","FJ-onResume");
     }
 
     @Override
@@ -141,14 +145,21 @@ public class FenetreDeJeu extends AppCompatActivity {
         score.setText(str + " points !");
     }
 
+    public void afficheTextFin(){
+        end.setText("Perdu !");
+        //endButton.setVisibility(endButton.VISIBLE);
+        String str = String.valueOf(s.getNbPoint());
+        endScore.setText(str + " points !");
+    }
+
     public void updateAvance(){
-
+        switch(s.getNbPoint()){
+            case 2000:
+                vitesseThread = 6;
+        }
     }
 
-    public boolean verif() {
-        spriteRect = new RectF(j.getX(), j.getY(), j.getX() + jumper.getWidth(), j.getY() + jumper.getHeight());
-        bottomPipeRect = new RectF(t.getX(), t.getBottomY(), t.getX() + tuyau.getWidth(), t.getBottomY() + tuyau.getHeight());
-        return bottomPipeRect.intersect(spriteRect);
+    public boolean verifContact(){
+        return false;
     }
-
 }

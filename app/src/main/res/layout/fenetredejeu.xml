@@ -17,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/jeu"/>
+        android:src="@mipmap/jeu"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-260dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -83,20 +85,55 @@
 
     <TextView
         android:id="@+id/end"
-        android:layout_width="240dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="164dp"
+        android:layout_width="212dp"
+        android:layout_height="84dp"
         android:fontFamily="sans-serif-black"
-        android:text="Perdu !"
+        android:text=""
         android:textSize="60sp"
         android:typeface="monospace"
         android:verticalScrollbarPosition="defaultPosition"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/endScore"
+        android:layout_width="214dp"
+        android:layout_height="53dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text=""
+        android:textSize="30sp"
+        android:typeface="monospace"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_one"
+        app:layout_constraintVertical_bias="0.348"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/endButton"
+        android:layout_width="288dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="364dp"
+        android:background="@drawable/degrade"
+        android:onClick="click"
+        android:gravity="center"
+        android:text="Recommencer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
