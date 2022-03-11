@@ -4,11 +4,12 @@ public class Jumper {
 
     private int y;
     private int x;
+    public boolean estEnTrainDeSauter=false;
 
     public Jumper(){
+
         this.x=0;
     }
-    public boolean estEnTrainDeSauter=false;
 
     public int getY() {
         return y;
