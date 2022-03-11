@@ -1,7 +1,12 @@
 package app.android_jumper_app.model.fenetre;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +38,8 @@ public class FenetreDeJeu extends AppCompatActivity {
     private float hauteurEcran;
     private float largeurJumper;
     private float hauteurJumper;
+    private Bitmap bitmapJumper;
+    private Bitmap bitmapTuyau;
     private final float avance = 10;
     private final int avanceB = 800;
     public int vitesseThread = 8;
@@ -160,6 +167,61 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public boolean verifContact(){
+        bitmapJumper = getViewBitmap(jumper);
+        bitmapTuyau = getViewBitmap(tuyau);
+
+        Rect bounds1 = new Rect(j.getX(), j.getY(), j.getX() + bitmapJumper.getWidth(), j.getY() + bitmapJumper.getHeight());
+        Rect bounds2 = new Rect(t.getX(), t.getY(), t.getX() + bitmapTuyau.getWidth(), t.getY() + bitmapTuyau.getHeight());
+
+        if (Rect.intersects(bounds1, bounds2)) {
+            Rect collisionBounds = getCollisionBounds(bounds1, bounds2);
+            for (int i = collisionBounds.left; i < collisionBounds.right; i++) {
+                for (int l = collisionBounds.top; l < collisionBounds.bottom; l++) {
+                    int bitmap1Pixel = bitmapJumper.getPixel(i - j.getX(), l - j.getY());
+                    int bitmap2Pixel = bitmapTuyau.getPixel(i - t.getX(), l - t.getY());
+                    if (isFilled(bitmap1Pixel) && isFilled(bitmap2Pixel)) {
+                        bitmapJumper.recycle();
+                        bitmapJumper = null;
+                        bitmapTuyau.recycle();
+                        bitmapTuyau = null;
+                        return true;
+                    }
+                }
+            }
+        }
+        bitmapJumper.recycle();
+        bitmapJumper = null;
+        bitmapTuyau.recycle();
+        bitmapTuyau = null;
         return false;
+    }
+
+    private static Bitmap getViewBitmap(View v) {
+        if (v.getMeasuredHeight() <= 0) {
+            int specWidth = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            v.measure(specWidth, specWidth);
+            Bitmap b = Bitmap.createBitmap(v.getLayoutParams().width, v.getLayoutParams().height, Bitmap.Config.ARGB_8888);
+            Canvas c = new Canvas(b);
+            v.layout(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
+            v.draw(c);
+            return b;
+        }
+        Bitmap b = Bitmap.createBitmap(v.getLayoutParams().width, v.getLayoutParams().height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        v.layout(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+        v.draw(c);
+        return b;
+    }
+
+    private static Rect getCollisionBounds(Rect rect1, Rect rect2) {
+        int left = Math.max(rect1.left, rect2.left);
+        int top = Math.max(rect1.top, rect2.top);
+        int right = Math.min(rect1.right, rect2.right);
+        int bottom = Math.min(rect1.bottom, rect2.bottom);
+        return new Rect(left, top, right, bottom);
+    }
+
+    private static boolean isFilled(int pixel) {
+        return pixel != Color.RED;
     }
 }

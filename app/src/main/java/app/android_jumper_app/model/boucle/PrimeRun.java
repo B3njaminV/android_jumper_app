@@ -29,6 +29,7 @@ public class PrimeRun implements Runnable {
                     fdj.afficheTextFin();
                 }
                 Thread.sleep(fdj.vitesseThread);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
