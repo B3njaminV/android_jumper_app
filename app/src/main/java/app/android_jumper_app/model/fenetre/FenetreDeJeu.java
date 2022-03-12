@@ -92,7 +92,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                j.calculCoordonnee();
+                j.saut();
                 ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
         }
         Log.d("LAJ","FJ-onTouchEvent");

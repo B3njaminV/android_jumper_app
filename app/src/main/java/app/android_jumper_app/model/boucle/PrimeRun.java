@@ -17,12 +17,12 @@ public class PrimeRun implements Runnable {
     public void run() {
         while(!isDead){
             try {
-                fdj.updateAvance();
                 fdj.addPoint();
                 fdj.updateTuyau();
                 fdj.updateBackground();
                 fdj.updateChateau();
                 fdj.updatePoint();
+                fdj.updateAvance();
                 if(fdj.verifContact()){
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
                     isDead=true;

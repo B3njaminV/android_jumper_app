@@ -5,6 +5,7 @@ public class Jumper {
     private int y;
     private int x;
     public boolean estEnTrainDeSauter=false;
+    private int velocityY;
 
     public Jumper(){
 
@@ -27,18 +28,25 @@ public class Jumper {
         this.y = 0;
     }
 
-    public void saut() {
+    public void sauter() {
         this.y = -500;
     }
 
+    public void setEstEnTrainDeSauter(boolean estEnTrainDeSauter) {
+        this.estEnTrainDeSauter = estEnTrainDeSauter;
+    }
 
-    public void calculCoordonnee(){
+    public boolean isEstEnTrainDeSauter() {
+        return estEnTrainDeSauter;
+    }
+
+    public void saut() {
         if(!estEnTrainDeSauter) {
-            saut();
-            estEnTrainDeSauter=true;
+            sauter();
+            setEstEnTrainDeSauter(true);
         }else {
             setZeroY();
-            estEnTrainDeSauter=false;
+            setEstEnTrainDeSauter(false);
         }
     }
 }
