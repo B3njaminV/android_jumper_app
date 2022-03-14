@@ -17,17 +17,21 @@ public class PrimeRun implements Runnable {
     public void run() {
         while(!isDead){
             try {
+                if (fdj.millis >= 20 && fdj.millis % 2 == 0 && fdj.j.getY() < 0)
+                    fdj.dy += 6;
                 fdj.addPoint();
+                fdj.updateJumper();
                 fdj.updateTuyau();
                 fdj.updateBackground();
                 fdj.updateChateau();
                 fdj.updatePoint();
                 fdj.updateAvance();
-                if(fdj.verifContact()){
+                /*if(fdj.verifContact()){
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
                     isDead=true;
                     fdj.afficheTextFin();
-                }
+                }*/
+                fdj.millis++;
                 Thread.sleep(fdj.vitesseThread);
 
             } catch (InterruptedException e) {

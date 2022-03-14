@@ -12,6 +12,10 @@ public class Jumper {
         this.x=0;
     }
 
+    public void update (int dy) {
+        this.y += dy;
+    }
+
     public int getY() {
         return y;
     }
@@ -41,7 +45,7 @@ public class Jumper {
     }
 
     public void saut() {
-        if(!estEnTrainDeSauter) {
+        if(!isEstEnTrainDeSauter()) {
             sauter();
             setEstEnTrainDeSauter(true);
         }else {

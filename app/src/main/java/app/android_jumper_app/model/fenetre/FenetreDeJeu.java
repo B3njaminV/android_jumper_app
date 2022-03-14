@@ -38,8 +38,8 @@ public class FenetreDeJeu extends AppCompatActivity {
     private float hauteurEcran;
     private float largeurJumper;
     private float hauteurJumper;
-    private Bitmap bitmapJumper;
-    private Bitmap bitmapTuyau;
+    public int dy = 0;
+    public int millis = 0;
     private final float avance = 10;
     private final int avanceB = 800;
     public int vitesseThread = 8;
@@ -92,8 +92,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                j.saut();
-                ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
+                dy = -25;
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;
@@ -124,6 +123,14 @@ public class FenetreDeJeu extends AppCompatActivity {
         }
         t.avance();
         tuyau.setTranslationX(t.getX());
+    }
+
+    public void updateJumper(){
+        ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
+        j.update(dy);
+        if (dy <= 0) {      //on garde jumper toujours au dessus de la terre
+            dy = 0;
+        }
     }
 
     public void updateBackground() {
@@ -167,7 +174,9 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public boolean verifContact(){
-        if (!j.estEnTrainDeSauter && j.getX() - 480 == t.getX()) return true;
+        if (!j.estEnTrainDeSauter && j.getX() - 480 == t.getX()){
+            return true;
+        }
         return false;
     }
 }
