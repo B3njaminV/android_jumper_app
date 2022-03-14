@@ -92,7 +92,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                dy = -25;
+                dy = -50;
         }
         Log.d("LAJ","FJ-onTouchEvent");
         return false;
@@ -117,20 +117,20 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LAJ","FJ-onDestroy");
     }
 
+    public void updateJumper(){
+        ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
+        j.update(dy);
+        if (dy >= 0) {      //on garde jumper toujours au dessus de la terre
+            dy = 0;
+        }
+    }
+
     public void updateTuyau(){
         if(t.getX() == -1200){
             t.remisAZero(200);
         }
         t.avance();
         tuyau.setTranslationX(t.getX());
-    }
-
-    public void updateJumper(){
-        ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
-        j.update(dy);
-        if (dy <= 0) {      //on garde jumper toujours au dessus de la terre
-            dy = 0;
-        }
     }
 
     public void updateBackground() {

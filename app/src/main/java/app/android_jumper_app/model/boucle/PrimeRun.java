@@ -18,7 +18,7 @@ public class PrimeRun implements Runnable {
         while(!isDead){
             try {
                 if (fdj.millis >= 20 && fdj.millis % 2 == 0 && fdj.j.getY() < 0)
-                    fdj.dy += 6;
+                    fdj.dy += 10;
                 fdj.addPoint();
                 fdj.updateJumper();
                 fdj.updateTuyau();
