@@ -41,15 +41,15 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetredejeu);
-        backgroundOne = (ImageView) findViewById(R.id.background_one);
-        backgroundTwo = (ImageView) findViewById(R.id.background_two);
-        chateau = (ImageView) findViewById(R.id.chateau);
-        tuyau = (ImageView) findViewById(R.id.tuyau);
-        jumper = (ImageView) findViewById(R.id.jumper);
-        score = (TextView)findViewById(R.id.points);
-        end = (TextView) findViewById(R.id.end);
-        endScore = (TextView) findViewById(R.id.endScore);
-        endButton = (Button) findViewById(R.id.endButton);
+        backgroundOne = findViewById(R.id.background_one);
+        backgroundTwo = findViewById(R.id.background_two);
+        chateau = findViewById(R.id.chateau);
+        tuyau = findViewById(R.id.tuyau);
+        jumper = findViewById(R.id.jumper);
+        score = findViewById(R.id.points);
+        end = findViewById(R.id.end);
+        endScore = findViewById(R.id.endScore);
+        endButton = findViewById(R.id.endButton);
         backgroundOne.setTranslationX(0);
         backgroundTwo.setTranslationX(avanceB);
         endButton.setVisibility(View.GONE);
@@ -153,6 +153,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void afficheTextFin(){
         end.setText("Perdu !");
+        //endButton.setVisibility(View.VISIBLE);
         String str = String.valueOf(s.getNbPoint());
         endScore.setText(str + " points !");
     }

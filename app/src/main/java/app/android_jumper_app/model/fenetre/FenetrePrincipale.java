@@ -17,6 +17,7 @@ import app.android_jumper_app.data.Loader;
 import app.android_jumper_app.data.Sauveur;
 import app.android_jumper_app.R;
 import app.android_jumper_app.model.classe.Joueur;
+import app.android_jumper_app.model.classe.Score;
 
 public class FenetrePrincipale extends AppCompatActivity {
 

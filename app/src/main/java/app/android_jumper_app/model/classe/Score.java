@@ -20,11 +20,4 @@ public class Score implements Serializable {
         this.nbPoints++;
     }
 
-    /**
-     * On remet à 0 le score (dans le cas d'une relance d'une partie)
-     */
-    public void remisAZreo(){
-        this.nbPoints=0;
-    }
-
 }

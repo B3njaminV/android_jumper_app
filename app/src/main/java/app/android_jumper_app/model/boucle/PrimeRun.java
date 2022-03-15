@@ -35,7 +35,6 @@ public class PrimeRun implements Runnable {
                 }
                 fdj.millis++;
                 Thread.sleep(fdj.vitesseThread);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
