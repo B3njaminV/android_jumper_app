@@ -1,11 +1,12 @@
 package app.android_jumper_app.model.boucle;
 import android.util.Log;
+import android.view.View;
 
 import app.android_jumper_app.model.fenetre.FenetreDeJeu;
 
 public class PrimeRun implements Runnable {
     long minPrime;
-    private boolean isDead=false;
+    public boolean isPause=false;
     private final FenetreDeJeu fdj;
 
     public PrimeRun(long minPrime, FenetreDeJeu fdj) {
@@ -15,10 +16,11 @@ public class PrimeRun implements Runnable {
 
     @Override
     public void run() {
-        while(!isDead){
+        while(!isPause){
             try {
-                if (fdj.millis >= 20 && fdj.millis % 2 == 0 && fdj.j.getY() < 0)
-                    fdj.dy += 10;
+                if (fdj.millis >= 20 && fdj.millis % 2 == 0 && fdj.j.getY() < 0){
+                    fdj.dy += 15;                                                       //on ramène jumper a 0 y en permanence
+                }
                 fdj.addPoint();
                 fdj.updateJumper();
                 fdj.updateTuyau();
@@ -26,11 +28,11 @@ public class PrimeRun implements Runnable {
                 fdj.updateChateau();
                 fdj.updatePoint();
                 fdj.updateAvance();
-                /*if(fdj.verifContact()){
+                if(fdj.verifContact()){
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
-                    isDead=true;
+                    isPause=true;
                     fdj.afficheTextFin();
-                }*/
+                }
                 fdj.millis++;
                 Thread.sleep(fdj.vitesseThread);
 

@@ -7,11 +7,6 @@ public class Score implements Serializable {
     private int nbPoints;
 
     /**
-     * Un score est définit seulement par un nombre de points
-     */
-    public Score(){}
-
-    /**
      * On retourne le nombre de points
      */
     public int getNbPoint(){
@@ -19,21 +14,14 @@ public class Score implements Serializable {
     }
 
     /**
-     * On définit le nombre de points
-     */
-    public void setNbPoint(int nb){
-        this.nbPoints=nb;
-    }
-
-    /**
-     * On ajoute des points de 1 en 1 (pour le score dans la boucle du jeu)
+     * On ajoute un point au score
      */
     public void addPoint(){
         this.nbPoints++;
     }
 
     /**
-     * On remet à 0 le score (quand on relance une partie)
+     * On remet à 0 le score (dans le cas d'une relance d'une partie)
      */
     public void remisAZreo(){
         this.nbPoints=0;

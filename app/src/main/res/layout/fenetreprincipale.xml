@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/pageprincipal">
+    android:background="@mipmap/pageprincipal"
+    android:configChanges="orientation|screenSize">
 
     <TextView
         android:id="@+id/textView"
@@ -21,7 +22,7 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/button"
@@ -44,7 +45,7 @@
         android:layout_marginTop="124dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Entrez votre pseudo"
+        android:hint="Entrez votre pseudo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"

@@ -1,8 +1,5 @@
 package app.android_jumper_app.model.fenetre;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Rect;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,11 +30,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     private TextView end;
     private TextView endScore;
     private TextView score;
-    private Button endButton;
-    private float largeurEcran;
-    private float hauteurEcran;
-    private float largeurJumper;
-    private float hauteurJumper;
+    public Button endButton;
     public int dy = 0;
     public int millis = 0;
     private final float avance = 10;
@@ -57,16 +50,13 @@ public class FenetreDeJeu extends AppCompatActivity {
         end = (TextView) findViewById(R.id.end);
         endScore = (TextView) findViewById(R.id.endScore);
         endButton = (Button) findViewById(R.id.endButton);
-        largeurEcran = backgroundOne.getWidth();
-        hauteurEcran = backgroundOne.getHeight();
-        largeurJumper = jumper.getWidth();
-        hauteurJumper = jumper.getHeight();
         backgroundOne.setTranslationX(0);
         backgroundTwo.setTranslationX(avanceB);
-        endButton.setVisibility(endButton.GONE);
+        endButton.setVisibility(View.GONE);
         Log.d("LAJ","FJ-onCreate");
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onStart(){
         super.onStart();
@@ -81,7 +71,7 @@ public class FenetreDeJeu extends AppCompatActivity {
 
         p = new PrimeRun(143, this);
         new Thread(p).start();
-
+        j.setY(-400);                   //saut de départ
         tuyau.setTranslationX(t.getX());
         tuyau.setTranslationY(t.getY());//premier positionnement du tuyau donc a ce niveau x vaut 0
         jumper.setTranslationX(j.getX());       //fixe, jumper ne bougera jamais
@@ -90,8 +80,7 @@ public class FenetreDeJeu extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_DOWN:
+        if(e.getAction() == MotionEvent.ACTION_DOWN && j.getY() >= -500){           //on bloque le saut en hauteur et on vérifie qu'il y a une action écran (click)
                 dy = -50;
         }
         Log.d("LAJ","FJ-onTouchEvent");
@@ -101,13 +90,14 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        s = new Score();
+        p.isPause = false;
         Log.d("LAJ","FJ-onResume");
     }
 
     @Override
     protected void onPause(){
         super.onPause();
+        p.isPause = true;
         Log.d("LAJ","FJ-onPause");
     }
 
@@ -154,27 +144,29 @@ public class FenetreDeJeu extends AppCompatActivity {
         s.addPoint();
     }
 
+    @SuppressLint("SetTextI18n")
     public void updatePoint(){
         String str = String.valueOf(s.getNbPoint());
         score.setText(str + " points !");
     }
 
+    @SuppressLint("SetTextI18n")
     public void afficheTextFin(){
         end.setText("Perdu !");
-        endButton.setVisibility(View.VISIBLE);
         String str = String.valueOf(s.getNbPoint());
         endScore.setText(str + " points !");
     }
 
     public void updateAvance(){
-        switch(s.getNbPoint()){
-            case 2000:
-                vitesseThread = 6;
+        if(s.getNbPoint() == 2000){
+            vitesseThread = 7;
+        }else if (s.getNbPoint() == 4000){
+            vitesseThread = 6;
         }
     }
 
     public boolean verifContact(){
-        if (!j.estEnTrainDeSauter && j.getX() - 480 == t.getX()){
+        if (j.getX() - 480 == t.getX() && j.getY() >= -tuyau.getHeight()){     //si x de jumper vaut x de tuyau et que y de jumper est supérieur (ducoup inférieur) à hauteur de tuyau
             return true;
         }
         return false;
