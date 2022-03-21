@@ -28,6 +28,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     private ImageView backgroundTwo;
     private ImageView chateau;
     private TextView end;
+    private TextView debut;
     private TextView endScore;
     private TextView score;
     public Button endButton;
@@ -48,6 +49,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         jumper = findViewById(R.id.jumper);
         score = findViewById(R.id.points);
         end = findViewById(R.id.end);
+        debut = findViewById(R.id.debut);
         endScore = findViewById(R.id.endScore);
         endButton = findViewById(R.id.endButton);
         backgroundOne.setTranslationX(0);
@@ -67,7 +69,8 @@ public class FenetreDeJeu extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.textView)).setText("@" + getIntent().getStringExtra("joueur_pseudo"));
         String str = String.valueOf(s.getNbPoint());
-        score.setText(str + " points !");
+        score.setText(str + " points");
+        debut.setText("Tapote pour sauter !");
 
         p = new PrimeRun(143, this);
         new Thread(p).start();
@@ -147,7 +150,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void updatePoint(){
         String str = String.valueOf(s.getNbPoint());
-        score.setText(str + " points !");
+        score.setText(str + " points");
     }
 
     @SuppressLint("SetTextI18n")
@@ -155,7 +158,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         end.setText("Perdu !");
         //endButton.setVisibility(View.VISIBLE);
         String str = String.valueOf(s.getNbPoint());
-        endScore.setText(str + " points !");
+        endScore.setText(str + " points");
     }
 
     public void updateAvance(){
@@ -171,5 +174,11 @@ public class FenetreDeJeu extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void updateTexteDepart(){
+        if(s.getNbPoint() > 200){
+            debut.setText("");
+        }
     }
 }

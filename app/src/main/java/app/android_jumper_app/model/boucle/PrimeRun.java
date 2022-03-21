@@ -28,6 +28,7 @@ public class PrimeRun implements Runnable {
                 fdj.updateChateau();
                 fdj.updatePoint();
                 fdj.updateAvance();
+                fdj.updateTexteDepart();
                 if(fdj.verifContact()){
                     Log.d("LAJ","J-CONTACT !!!!!!!!");
                     isPause=true;
