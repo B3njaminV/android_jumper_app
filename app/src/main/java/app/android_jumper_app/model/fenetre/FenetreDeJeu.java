@@ -58,7 +58,6 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LAJ","FJ-onCreate");
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onStart(){
         super.onStart();
@@ -147,16 +146,14 @@ public class FenetreDeJeu extends AppCompatActivity {
         s.addPoint();
     }
 
-    @SuppressLint("SetTextI18n")
     public void updatePoint(){
         String str = String.valueOf(s.getNbPoint());
         score.setText(str + " points");
     }
 
-    @SuppressLint("SetTextI18n")
     public void afficheTextFin(){
         end.setText("Perdu !");
-        //endButton.setVisibility(View.VISIBLE);
+        afficheBoutonDeFin();
         String str = String.valueOf(s.getNbPoint());
         endScore.setText(str + " points");
     }
@@ -177,8 +174,30 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public void updateTexteDepart(){
-        if(s.getNbPoint() > 200){
+        if(s.getNbPoint() > 100){
             debut.setText("");
         }
+    }
+
+    private void afficheBoutonDeFin(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                endButton.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void onclickButtonDeFin(View view) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                endButton.setVisibility(View.GONE);
+                p.isPause=true;
+                end.setText(" ");
+                endScore.setText(" ");
+            }
+        });
+
     }
 }

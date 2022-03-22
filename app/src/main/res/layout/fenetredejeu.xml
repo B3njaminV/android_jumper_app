@@ -125,16 +125,16 @@
         android:id="@+id/endButton"
         android:layout_width="288dp"
         android:layout_height="56dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="364dp"
         android:background="@drawable/degrade"
-        android:onClick="click"
         android:gravity="center"
+        android:onClick="onclickButtonDeFin"
         android:text="Recommencer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_one"
+        app:layout_constraintVertical_bias="0.477"
         tools:ignore="MissingConstraints" />
 
     <TextView
