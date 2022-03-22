@@ -159,9 +159,9 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public void updateAvance(){
-        if(s.getNbPoint() == 2000){
+        if(s.getNbPoint() == 1000){
             vitesseThread = 7;
-        }else if (s.getNbPoint() == 4000){
+        }else if (s.getNbPoint() == 2000){
             vitesseThread = 6;
         }
     }
@@ -189,15 +189,13 @@ public class FenetreDeJeu extends AppCompatActivity {
     }
 
     public void onclickButtonDeFin(View view) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                endButton.setVisibility(View.GONE);
-                p.isPause=true;
-                end.setText(" ");
-                endScore.setText(" ");
-            }
-        });
-
+        endButton.setVisibility(View.GONE);
+        p.isPause=true;
+        end.setText(" ");
+        endScore.setText(" ");
+        s.resetScore();
+        p = new PrimeRun(143, this);
+        new Thread(p).start();
+        j.setY(-400);
     }
 }

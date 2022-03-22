@@ -20,4 +20,9 @@ public class Score implements Serializable {
         this.nbPoints++;
     }
 
+    /**
+     * Permet de réinitialiser le score
+     */
+    public void resetScore(){this.nbPoints=0;}
+
 }
