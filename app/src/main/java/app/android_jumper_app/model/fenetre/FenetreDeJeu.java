@@ -194,6 +194,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         end.setText(" ");
         endScore.setText(" ");
         s.resetScore();
+        vitesseThread=8;
         p = new PrimeRun(143, this);
         new Thread(p).start();
         j.setY(-400);
