@@ -1,14 +1,23 @@
 <h1 align="center"> Jumper Android 👋</h1>
 
-> Jeux de Jumper avec boucle de jeu infini !
+> Jumper est un jeu d'arcade avec boucle de jeu infini ! Sautez tant que vous le pouvez !
 
 ### 🏠 [Homepage](https://github.com/B3njaminV/)
 
 
 ## 📍 Prérequis
 
-- Android Studio API16
+- Android Studio (API16)
 
+## 🖱️ Téléchargement
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Jumper est disponible sur le** [Play Store](https://google.fr)
+
+## 🖼️ Screenshots
+
+| Fenêtre de départ | Fenêtre de jeu | Fenêtre de fin |
+|-------------- | --------------| -------------- |
+| ![Image](./jumper_picture/commencer.jpg) | ![Image](./jumper_picture/jeu.jpg) | ![Image](./jumper_picture/perdu.jpg) |
 
 ## ✍️ Auteur
 
