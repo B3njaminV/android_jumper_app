@@ -109,6 +109,9 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LAJ","FJ-onDestroy");
     }
 
+    /**
+     * On update la position du joueur (y)
+     */
     public void updateJumper(){
         ((ImageView)findViewById(R.id.jumper)).setTranslationY(j.getY());
         j.update(dy);
@@ -117,6 +120,9 @@ public class FenetreDeJeu extends AppCompatActivity {
         }
     }
 
+    /**
+     * On update la position du tuyau (x)
+     */
     public void updateTuyau(){
         if(t.getX() == -1200){
             t.remisAZero(200);
@@ -125,6 +131,10 @@ public class FenetreDeJeu extends AppCompatActivity {
         tuyau.setTranslationX(t.getX());
     }
 
+    /**
+     * On update le background
+     * On fonctionne avec 2 background on fait avancer les 2
+     */
     public void updateBackground() {
         if (backgroundOne.getX() == -avanceB)
         {
@@ -138,19 +148,31 @@ public class FenetreDeJeu extends AppCompatActivity {
         backgroundTwo.setX(backgroundTwo.getX()-avance);
     }
 
+    /**
+     * On update le chateau de départ
+     */
     public void updateChateau(){
         chateau.setX(chateau.getX()-avance);
     }
 
+    /**
+     * On ajoute des points a chaque tour de boucle du thread
+     */
     public void addPoint(){
         s.addPoint();
     }
 
+    /**
+     * On update l'affichage des points
+     */
     public void updatePoint(){
         String str = String.valueOf(s.getNbPoint());
         score.setText(str + " points");
     }
 
+    /**
+     * Affichage du texte de fin
+     */
     public void afficheTextFin(){
         end.setText("Perdu !");
         afficheBoutonDeFin();
@@ -158,6 +180,9 @@ public class FenetreDeJeu extends AppCompatActivity {
         endScore.setText(str + " points");
     }
 
+    /**
+     * On gère la vitesse du thread en fonction du nombre de points
+     */
     public void updateAvance(){
         if(s.getNbPoint() == 1000){
             vitesseThread = 7;
@@ -166,6 +191,10 @@ public class FenetreDeJeu extends AppCompatActivity {
         }
     }
 
+    /**
+     * On vérifie les contacts entre tuyau et jumper avec leur coordonnées
+     * @return
+     */
     public boolean verifContact(){
         if (j.getX() - 480 == t.getX() && j.getY() >= -tuyau.getHeight()){     //si x de jumper vaut x de tuyau et que y de jumper est supérieur (ducoup inférieur) à hauteur de tuyau
             return true;
@@ -173,12 +202,18 @@ public class FenetreDeJeu extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * On gère simplement le textviex de départ qui explique les consignes de jeu
+     */
     public void updateTexteDepart(){
         if(s.getNbPoint() > 100){
             debut.setText("");
         }
     }
 
+    /**
+     * On affiche le bouton de fin uniquement si y'a eu contact
+     */
     private void afficheBoutonDeFin(){
         runOnUiThread(new Runnable() {
             @Override
@@ -188,6 +223,10 @@ public class FenetreDeJeu extends AppCompatActivity {
         });
     }
 
+    /**
+     * Si jamais on clique sur le bouton de fin, on reset les paramètres et on restart le thread
+     * @param view
+     */
     public void onclickButtonDeFin(View view) {
         endButton.setVisibility(View.GONE);
         p.isPause=true;
