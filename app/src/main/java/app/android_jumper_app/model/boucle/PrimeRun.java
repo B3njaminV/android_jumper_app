@@ -4,6 +4,9 @@ import android.view.View;
 
 import app.android_jumper_app.model.fenetre.FenetreDeJeu;
 
+/**
+ * Boucle de jeu : élement principal de Jumper
+ */
 public class PrimeRun implements Runnable {
     long minPrime;
     public boolean isPause=false;
