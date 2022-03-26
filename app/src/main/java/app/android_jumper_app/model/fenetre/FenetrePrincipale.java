@@ -95,6 +95,10 @@ public class FenetrePrincipale extends AppCompatActivity {
         Log.d("LAJ","FP-onDestroy");
     }
 
+    /**
+     * Action du bouton Commencez une partie
+     * @param view
+     */
     public void click(View view) {
         String nom = ((EditText)findViewById(R.id.editTextTextPersonName)).getText().toString();
         if (nom.isEmpty()){
