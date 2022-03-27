@@ -11,7 +11,7 @@
 
 ## 🖱️ Téléchargement
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Jumper est disponible sur le** [Play Store](https://google.fr)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Jumper est en cours de publication sur le** [Play Store](https://play.google.com/store)
 
 ## 🖼️ Screenshots
 
